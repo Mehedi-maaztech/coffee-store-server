@@ -4,6 +4,8 @@ require('dotenv').config();
 const admin = require("firebase-admin");
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const serviceAccount = require('./coffee-store-adminsdk.json')
+fs.writeFileSync('/tmp/coffee-store-adminsdk.json', process.env.GOOGLE_CREDENTIALS);
+//var serviceAccount = require("path/to/serviceAccountKey.json");
 const app = express();
 const port = process.env.port || 5000;
 
@@ -14,7 +16,7 @@ app.get('/', (req, res) => {
   res.send(`Hello World! from port ${port} get ready`);
 });
 
-//var serviceAccount = require("path/to/serviceAccountKey.json");
+
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
