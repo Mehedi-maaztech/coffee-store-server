@@ -3,7 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const admin = require("firebase-admin");
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const serviceAccount = require('./coffee-store-adminsdk.json')
+// const serviceAccount = require('./coffee-store-adminsdk.json')
 //var serviceAccount = require("path/to/serviceAccountKey.json");
 // fs.writeFileSync('/tmp/coffee-store-adminsdk.json', process.env.GOOGLE_CREDENTIALS);
 const app = express();
@@ -16,8 +16,10 @@ app.get('/', (req, res) => {
   res.send(`Hello World! from port ${port} get ready`);
 });
 
-// const serviceAccount = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-// serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+const serviceAccount = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+if(serviceAccount){
+  serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+}
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
