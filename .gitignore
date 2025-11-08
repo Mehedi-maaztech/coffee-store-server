@@ -1,0 +1,4 @@
+node_modules
+.env
+coffee-store-adminsdk.json
+.vercel
