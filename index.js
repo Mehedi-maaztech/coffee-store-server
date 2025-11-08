@@ -19,7 +19,7 @@ app.get('/hello', (req, res) => {
 });
 
 const serviceAccount = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+// serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
